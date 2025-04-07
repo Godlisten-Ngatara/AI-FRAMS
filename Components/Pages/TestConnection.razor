@@ -1,0 +1,20 @@
+﻿@page "/testconnection"
+@using AI_FRAMS.Services
+@inject StudentService StudentService
+
+<h3>Test Database Connection</h3>
+
+<button @onclick="ConnectionTest">Test Connection</button>
+
+<p>@Message</p>
+
+@code {
+    // Message to display the result
+    private string Message = "Click the button to test connection.";
+
+    // When button is clicked, call the service
+    private async Task ConnectionTest()
+    {
+        Message = await StudentService.TestConnectionAsync();
+    }
+}

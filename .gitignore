@@ -1,0 +1,30 @@
+# Ignore build directories
+bin/
+obj/
+
+# Ignore IDE-specific files
+.vs/
+.idea/
+*.user
+*.sln
+*.suo
+*.userprefs
+.editorconfig
+
+# Ignore platform-specific output
+*.apk
+*.ipa
+
+# Ignore NuGet packages folder
+.nuget/
+
+# Ignore app-specific secrets
+appSettings.json
+
+# Ignore log files
+*.log
+*.tmp
+*.bak
+*.swp
+
+

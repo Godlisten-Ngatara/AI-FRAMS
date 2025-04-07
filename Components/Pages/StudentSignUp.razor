@@ -1,0 +1,170 @@
+﻿@page "/"
+@layout EmptyLayout
+@inject StudentService StudentService
+@using AI_FRAMS.Models
+@using AI_FRAMS.Services
+@using Microsoft.AspNetCore.Components.Forms
+<div class="container">
+    <!-- Left side - Branding -->
+    <div class="branding-section geometric-bg">
+        <div class="content-wrapper">
+            <div class="logo-container">
+                <div class="logo-inner">
+                    <i class="ri-user-smile-line"></i>
+                    <div class="logo-badge">
+                        <i class="ri-vr-line"></i>
+                    </div>
+                </div>
+            </div>
+            <h2 class="brand-name">AI-FRAMS</h2>
+            <h1 class="brand-title">Create Your Account</h1>
+            <div class="brand-description">
+                <p>
+                    Join our innovative AI platform and unlock the future of digital
+                    experiences.
+                </p>
+            </div>
+        </div>
+        <!-- Decorative elements -->
+        <div class="decorative-elements">
+            <div class="decorative-corner-tl"></div>
+            <div class="decorative-corner-br"></div>
+        </div>
+    </div>
+    <!-- Right side - Form -->
+    <div class="form-section">
+        <div class="form-container">
+            <h2 class="form-title">Sign Up</h2>
+            <EditForm Model="@student" class="form-content" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-grid">
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <InputText type="text"
+                               id="firstName"
+                               placeholder="First Name"
+                               class="form-input"
+                               @bind-Value="student.First_name"/>
+                    </div>
+                    <!-- Surname -->
+                    <div class="form-group">
+                        <label for="surname" class="form-label">Surname</label>
+                        <InputText type="text"
+                               id="surname"
+                               placeholder="Surname"
+                               class="form-input"
+                               @bind-Value="student.Last_name"/>
+                    </div>
+                    <!-- Date of Birth -->
+                    <div class="form-group">
+                        <label for="dob" class="form-label">Other name</label>
+                        <InputText type="text"
+                               id="dob"
+                               placeholder="Othername"
+                               class="form-input"
+                               @bind-Value="student.Middle_name"
+                               />
+                    </div>
+                    <!-- Office Room Number -->
+                    
+                    <!-- ID Number -->
+                    <div class="form-group">
+                        <label for="idNumber" class="form-label">ID Number</label>
+                        <InputText type="text"
+                               id="idNumber"
+                               placeholder="Registration Number"
+                               class="form-input" 
+                               @bind-value="student.RegNo"/>
+                    </div>
+                    <!-- Department -->
+  
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <InputText type="email"
+                               id="email"
+                               placeholder="Email"
+                               class="form-input" 
+                               @bind-Value="student.Email"/>
+                    </div>
+                    <!-- Phone Number -->
+                    @* <div class="form-group"> *@
+                    @*     <label for="phone" class="form-label">Phone Number</label> *@
+                    @*     <input type="tel" *@
+                    @*            id="phone" *@
+                    @*            placeholder="Phone Number" *@
+                    @*            class="form-input" /> *@
+                    @* </div> *@
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">Enter Password</label>
+                        <InputText type="password"
+                               id="password"
+                               placeholder="Enter Password"
+                               class="form-input"
+                               @bind-Value="student.Password_hash"/>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Renter Password</label>
+                        <InputText type="password"
+                               id="confirmPassword"
+                               placeholder="Renter Password"
+                               class="form-input" 
+                               @bind-Value="student.Password_hash"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Programme" class="form-label">Programme</label>
+                        <InputText type="text"
+                                   id="Programme"
+                                   placeholder="Enter Programme"
+                                   class="form-input"
+                                   @bind-Value="student.Programme" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Year of Study" class="form-label">YoS</label>
+                        <InputNumber type="text"
+                                   id="yos"
+                                   placeholder="YoS"
+                                   class="form-input"
+                                   @bind-Value="student.Year_of_study" />
+                    </div>
+                </div>
+                <!-- Terms and Conditions -->
+                @* <div class="checkbox-container"> *@
+                @*     <div class="checkbox-wrapper"> *@
+                @*         <input type="checkbox" id="terms" class="sr-only" /> *@
+                @*         <div id="customCheckbox" *@
+                @*              class="custom-checkbox" *@
+                @*              onclick="toggleCheckbox()"> *@
+                @*             <i id="checkmark" class="ri-check-line checkmark"></i> *@
+                @*         </div> *@
+                @*     </div> *@
+                @*     <label for="terms" class="checkbox-label">Agree to Terms and Conditions</label> *@
+                @* </div> *@
+                <!-- Submit Button -->
+                <button type="submit" class="submit-button">Register Here</button>
+                <div class="login-link-container">
+                    Already have an account?
+                    <a href="#" class="login-link">Sign in</a>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Student student = new();
+
+    private async Task HandleValidSubmit()
+    {
+        // Handle form submission logic here
+        // For example, save the student data to a database or perform validation
+
+        await StudentService.AddStudentAsync(student);
+        Console.WriteLine("Form submitted successfully!");
+    }
+
+}
