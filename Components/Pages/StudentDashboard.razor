@@ -1,0 +1,144 @@
+﻿@page "/"
+@layout EmptyLayout
+@inject StudentService studentService
+@using AI_FRAMS.Services
+@using AI_FRAMS.Models
+<div class="dash-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="https://placehold.co/100x100" alt="AI-FRAMS Logo" class="logo-img">
+            <h2>AI-FRAMS</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item active">
+                <span class="nav-icon">⊞</span>
+                Dashboard
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                My Profile
+            </a>
+            <a href="classes.html" class="nav-item">
+                <span class="nav-icon">📚</span>
+                My Classes
+            </a>
+            <a href="attendance.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Attendance Records
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </a>
+            <a href="settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                Settings
+            </a>
+        </nav>
+        <div class="logout">
+            <a href="#" class="nav-item">
+                <span class="nav-icon">↩️</span>
+                Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Dashboard</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search Here">
+            </div>
+            <div class="user-profile">
+                <img src="https://placehold.co/40x40" alt="Profile" class="profile-img">
+                <span>@Name</span>
+            </div>
+        </header>
+
+        <div class="welcome-banner">
+            <h2>Hello @Name 👋</h2>
+            <h2>Welcome to AI-FRAMS</h2>
+        </div>
+
+        <section class="courses-section">
+            <h3>My Courses</h3>
+            <div class="courses-grid">
+                <div class="course-card purple">
+                    <h4>TE412</h4>
+                    <p>Networking Devices</p>
+                </div>
+                <div class="course-card blue">
+                    <h4>CS432</h4>
+                    <p>Embedded Systems</p>
+                </div>
+                <div class="course-card purple">
+                    <h4>CS411</h4>
+                    <p>Computer Devices</p>
+                </div>
+                <div class="course-card blue">
+                    <h4>CS444</h4>
+                    <p>Entreprenuership</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Number of Lectures</h3>
+                <div class="stat-content">
+                    <span class="stat-number">8</span>
+                    <span class="stat-icon">📋</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Number of Tutorials</h3>
+                <div class="stat-content">
+                    <span class="stat-number">4</span>
+                    <span class="stat-icon">📋</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="attendance-section">
+            <h3>Average Attendance</h3>
+            <div class="attendance-grid">
+                <div class="attendance-card">
+                    <h4>TE412</h4>
+                    <div class="percentage">61%</div>
+                </div>
+                <div class="attendance-card">
+                    <h4>CS432</h4>
+                    <div class="percentage">57%</div>
+                </div>
+                <div class="attendance-card">
+                    <h4>CS411</h4>
+                    <div class="percentage">77%</div>
+                </div>
+                <div class="attendance-card">
+                    <h4>CS444</h4>
+                    <div class="percentage">67%</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 All Rights Reserved</p>
+        </footer>
+    </main>
+</div>
+
+@code {
+    private Student student;
+    private string Name;
+
+    protected override async Task OnInitializedAsync()
+    {
+        student = await studentService.FetchStudentAsync();
+        if (student != null)
+        {
+            Name = student.First_name;
+        }
+    }
+}
