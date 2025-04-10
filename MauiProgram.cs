@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 using AI_FRAMS.Services;
 using AI_FRAMS.Data;
 using Microsoft.EntityFrameworkCore;
+using Blazorise;
+using Blazorise.Bootstrap5;
+using Blazorise.Icons.FontAwesome;
 namespace AI_FRAMS;
 
 public static class MauiProgram
@@ -30,6 +33,7 @@ public static class MauiProgram
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(connectionString));
         builder.Services.AddScoped<StudentService>();
+      
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
