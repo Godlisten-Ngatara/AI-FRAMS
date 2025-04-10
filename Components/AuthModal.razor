@@ -1,0 +1,17 @@
+﻿@if (IsVisible)
+{
+    <div class="modal" id="myModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <p></p>
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool IsVisible { get; set; }
+}

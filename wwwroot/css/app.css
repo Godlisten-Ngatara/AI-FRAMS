@@ -1,7 +1,42 @@
-﻿html, body {
+﻿:root {
+    --primary: #0d3b87;
+    --secondary: #4e3bae;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-300: #d1d5db;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-800: #1e40af;
+    --cyan-400: #22d3ee;
+    --purple-600: #9333ea;
+    --border-radius: 8px;
+    --border-radius-button: 8px;
+    --border-radius-full: 9999px;
+    --primary-blue: #003B8E;
+    --light-blue: #E5F0FF;
+    --purple: #2D1B69;
+    --text-dark: #333;
+    --text-light: #666;
+    --white: #fff;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
+body {
+    background-color: var(--light-blue);
+    
+}
 a, .btn-link {
     color: #006bb7;
 }
@@ -17,7 +52,7 @@ a, .btn-link {
 }
 
 .content {
-    padding-top: 1.1rem;
+    padding-top: 0;
 }
 
 h1:focus {

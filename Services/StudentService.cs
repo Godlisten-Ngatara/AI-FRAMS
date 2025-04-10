@@ -18,28 +18,26 @@ namespace AI_FRAMS.Services
         {
             _appDbContext = appDbContext;
         }
-        public async Task<string> TestConnectionAsync()
+        public async Task<Student> FetchStudentAsync()
         {
             try
             {
                 var student = await _appDbContext.students.FirstOrDefaultAsync();
-                return student != null
-                ? $"Connected! First student: {student.First_name}"
-                : "Connected, but no students found.";
-
+                return student;
             }
             catch (Exception ex)
             {
-                return $"Database error: {ex.Message}";
+                Console.WriteLine($"Error fetching student: {ex.Message}");
+                return null; // Return null in case of failure
             }
         }
 
-        public async Task<Student> AddStudentAsync(Student student)
+        public async Task<string> AddStudentAsync(Student student)
         {
-            student.Password_hash = BCrypt.Net.BCrypt.HashPassword(student.Password_hash);
+            student.Password = BCrypt.Net.BCrypt.HashPassword(student.Password);
             _appDbContext.students.Add(student);
             await _appDbContext.SaveChangesAsync();
-            return student;
+            return "operation succesful";
         }
     }
 }
